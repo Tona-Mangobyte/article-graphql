@@ -6,8 +6,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - article-graphql',
-    title: 'article-graphql',
+    titleTemplate: '%s - Graphql',
+    title: 'Article',
     htmlAttrs: {
       lang: 'en',
     },
@@ -39,14 +39,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    '@nuxtjs/apollo',
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+  // Apollo configuration
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.API_GRAPHQL
+      }
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

@@ -81,7 +81,22 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 export default {
   name: 'IndexPage',
+  async fetch({ app }) {
+    const client = app.apolloProvider.defaultClient
+    console.info(client)
+    const res = await client.query({
+      query: gql`{
+                articles {
+                    id,
+                    title,
+                    content
+                }
+            }`
+    })
+    console.info(res.data)
+  },
 }
 </script>
