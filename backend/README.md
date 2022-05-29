@@ -45,7 +45,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 ##URL
-http://localhost:3000/graphql
+http://localhost:5000/graphql
 
 #request get object
 ```bash

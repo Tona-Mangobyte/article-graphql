@@ -1,5 +1,5 @@
 {
-  "name": "hello-graphql",
+  "name": "article-graphql",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -19,8 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node/register node_modules/typeorm/cli.js -f ormconfig",
-    "seed:config": "ts-node -r tsconfig-paths/register cli/seed.cli.ts config"
+    "typeorm": "ts-node/register node_modules/typeorm/cli.js -f ormconfig"
   },
   "dependencies": {
     "@nestjs/common": "8.0.6",
