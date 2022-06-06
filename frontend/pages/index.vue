@@ -59,15 +59,5 @@ export default {
     this.records = res.data.getAllArticles.items
     this.pagination = res.data.getAllArticles.pagination
   },
-  methods: {
-    async onCreateArticle() {
-      const client = this.$nuxt.context.app.apolloProvider.defaultClient
-      const res = await client.mutate({
-        mutation: CREATE_ARTICLE,
-        variables: { title: 'the news', content: 'the content' }
-      })
-      console.info(res.data)
-    }
-  }
 }
 </script>
