@@ -13,8 +13,8 @@ export class ArticleService {
   }
 
   async getAllArticles(param: ArticleListParam): Promise<ArticleEntity[]> {
-    const { skip, take } = param;
-    return await this.articleRepository.find({ skip, take });
+    const { page, limit } = param;
+    return await this.articleRepository.find({ skip: ((page - 1) * limit), take: limit });
   }
 
   async getArticleById(id: number): Promise<ArticleEntity> {

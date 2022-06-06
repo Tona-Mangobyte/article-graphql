@@ -4,11 +4,10 @@ import { Max, Min } from 'class-validator';
 @ArgsType()
 export class ArticleListParam {
   @Field(type => Int)
-  @Min(0)
-  skip = 0;
+  @Min(1)
+  page = 1;
 
   @Field(type => Int)
-  @Min(1)
-  @Max(50)
-  take = 25;
+  @Max(100)
+  limit = 25;
 }
