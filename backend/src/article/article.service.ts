@@ -5,6 +5,9 @@ import { ArticleListParam } from './article-list.param';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ArticleUpdateDto } from './article-update.dto';
 import { ArticleDeleteDto } from './article-delete.dto';
+import {generatePagination, PaginationList} from "../common/helper/PaginationList";
+import {Paginator} from "../common/helper/Paginator";
+import {ArticlePagination} from "./article.pagination";
 
 export class ArticleService {
   constructor(
@@ -12,9 +15,11 @@ export class ArticleService {
     private readonly articleRepository: ArticleRepository) {
   }
 
-  async getAllArticles(param: ArticleListParam): Promise<ArticleEntity[]> {
+  async getAllArticles(param: ArticleListParam): Promise<ArticlePagination> {
     const { page, limit } = param;
-    return await this.articleRepository.find({ skip: ((page - 1) * limit), take: limit });
+    const [records, total] = await this.articleRepository.findAndCount({ skip: ((page - 1) * limit), take: limit });
+    const pagination = new Paginator(page, total, limit).generate();
+    return new ArticlePagination(pagination, records);
   }
 
   async getArticleById(id: number): Promise<ArticleEntity> {

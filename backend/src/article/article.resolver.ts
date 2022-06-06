@@ -5,13 +5,14 @@ import { ArticleEntity } from './article.entity';
 import { ArticleNewDto } from './article-new.dto';
 import { ArticleUpdateDto } from './article-update.dto';
 import { ArticleDeleteDto } from './article-delete.dto';
+import {ArticlePagination} from "./article.pagination";
 
 @Resolver(of => ArticleEntity)
 export class ArticleResolver {
   constructor(private readonly articleService: ArticleService) {}
 
-  @Query(returns => [ArticleEntity])
-  async articles(@Args() articleListParam: ArticleListParam): Promise<ArticleEntity[]> {
+  @Query(returns => ArticlePagination)
+  async getAllArticles(@Args() articleListParam: ArticleListParam): Promise<ArticlePagination> {
     return await this.articleService.getAllArticles(articleListParam);
   }
 
