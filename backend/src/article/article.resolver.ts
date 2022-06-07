@@ -1,10 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ArticleService } from './article.service';
-import { ArticleListParam } from './article-list.param';
+import { ArticleListArgs } from './article-list.param';
 import { ArticleEntity } from './article.entity';
-import { ArticleNewDto } from './article-new.dto';
-import { ArticleUpdateDto } from './article-update.dto';
-import { ArticleDeleteDto } from './article-delete.dto';
+import { ArticleNewInput } from './article-new.dto';
+import { ArticleUpdateInput } from './article-update.dto';
+import { ArticleDeleteInput } from './article-delete.dto';
 import {ArticlePagination} from "./article.pagination";
 
 @Resolver(of => ArticleEntity)
@@ -12,7 +12,7 @@ export class ArticleResolver {
   constructor(private readonly articleService: ArticleService) {}
 
   @Query(returns => ArticlePagination)
-  async getAllArticles(@Args() articleListParam: ArticleListParam): Promise<ArticlePagination> {
+  async getAllArticles(@Args() articleListParam: ArticleListArgs): Promise<ArticlePagination> {
     return await this.articleService.getAllArticles(articleListParam);
   }
 
@@ -22,17 +22,17 @@ export class ArticleResolver {
   }
 
   @Mutation(returns => ArticleEntity)
-  async createArticle(@Args('article') articleNewDto: ArticleNewDto): Promise<ArticleEntity> {
+  async createArticle(@Args('article') articleNewDto: ArticleNewInput): Promise<ArticleEntity> {
     return await this.articleService.create(articleNewDto);
   }
 
   @Mutation(returns => ArticleEntity)
-  async updateArticle(@Args('article') articleUpdateDto: ArticleUpdateDto): Promise<ArticleEntity> {
+  async updateArticle(@Args('article') articleUpdateDto: ArticleUpdateInput): Promise<ArticleEntity> {
     return await this.articleService.update(articleUpdateDto);
   }
 
   @Mutation(returns => ArticleEntity)
-  async deleteArticle(@Args('article') articleDeleteDto: ArticleDeleteDto): Promise<ArticleEntity> {
+  async deleteArticle(@Args('article') articleDeleteDto: ArticleDeleteInput): Promise<ArticleEntity> {
     return await this.articleService.remove(articleDeleteDto);
   }
 }

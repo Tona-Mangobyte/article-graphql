@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class ArticleDeleteDto {
+export class ArticleDeleteInput {
   @Field()
   id: number;
 }

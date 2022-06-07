@@ -1,7 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class ArticleNewDto {
+export class ArticleUpdateInput {
+  @Field()
+  id: number;
+
   @Field()
   title: string;
 
