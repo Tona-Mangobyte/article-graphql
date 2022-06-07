@@ -7,6 +7,7 @@ import { ArticleUpdateInput } from './article-update.input';
 import { ArticleDeleteInput } from './article-delete.input';
 import {Paginator} from "../common/helper/Paginator";
 import {ArticlePagination} from "./article.pagination";
+import {NotFoundException} from "@nestjs/common";
 
 export class ArticleService {
   constructor(
@@ -22,7 +23,11 @@ export class ArticleService {
   }
 
   async getArticleById(id: number): Promise<ArticleEntity> {
-    return await this.articleRepository.findOneOrFail(id);
+    const article = await this.articleRepository.findOne(id);
+    if (!article) {
+      throw new NotFoundException('article is not found')
+    }
+    return article;
   }
 
   async create(dto: ArticleNewInput): Promise<ArticleEntity> {

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from 'nestjs-config';
 import { resolve } from "path";
 import { ArticleModule } from './article/article.module';
+import {GraphqlExceptionFilter} from "./filters/graphql-exception.filter";
 
 @Module({
   imports: [
@@ -20,6 +21,12 @@ import { ArticleModule } from './article/article.module';
       debug: true,
       include: [ArticleModule],
     }),
+  ],
+  providers: [
+    {
+      provide: 'APP_FILTER',
+      useClass: GraphqlExceptionFilter,
+    }
   ],
 })
 export class AppModule {}
