@@ -1,10 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ArticleService } from './article.service';
-import { ArticleListArgs } from './article-list.param';
+import { ArticleListArgs } from './article-list.args';
 import { ArticleEntity } from './article.entity';
-import { ArticleNewInput } from './article-new.dto';
-import { ArticleUpdateInput } from './article-update.dto';
-import { ArticleDeleteInput } from './article-delete.dto';
+import { ArticleNewInput } from './article-new.input';
+import { ArticleUpdateInput } from './article-update.input';
+import { ArticleDeleteInput } from './article-delete.input';
 import {ArticlePagination} from "./article.pagination";
 
 @Resolver(of => ArticleEntity)

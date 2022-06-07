@@ -1,11 +1,10 @@
 import { ArticleRepository } from './article.repository';
-import { ArticleNewInput } from './article-new.dto';
+import { ArticleNewInput } from './article-new.input';
 import { ArticleEntity } from './article.entity';
-import { ArticleListArgs } from './article-list.param';
+import { ArticleListArgs } from './article-list.args';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ArticleUpdateInput } from './article-update.dto';
-import { ArticleDeleteInput } from './article-delete.dto';
-import {generatePagination, PaginationList} from "../common/helper/PaginationList";
+import { ArticleUpdateInput } from './article-update.input';
+import { ArticleDeleteInput } from './article-delete.input';
 import {Paginator} from "../common/helper/Paginator";
 import {ArticlePagination} from "./article.pagination";
 
